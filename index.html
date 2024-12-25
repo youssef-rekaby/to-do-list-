@@ -13,14 +13,19 @@
 </head>
 
 <body>
-    <h1>My Day</h1>
-    <div class="todos"></div>
-    <div class="writing">
-        <form action="">
-            <input type="text" id="task" name="task" placeholder="Enter a task">
-            <button id="submit" onclick="print()" >submit</button>
-        </form>
-    </div>
+   
+        <h1>My Day</h1>
+        <div class="todos"></div>
+        <div class="writing" id="non-blured ">
+            <form action="">
+                <input type="text" id="tasks" name="task" placeholder="Enter a task" autofocus>
+                <button id="submit" onclick="print()">submit</button>
+            </form>
+        </div>
+        <aside id="editboard">
+            <h2>Your task</h2>
+        </aside>
+    
     <script src="script.js"></script>
 </body>
 
