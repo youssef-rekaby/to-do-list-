@@ -9,7 +9,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: self-start;
-    width: 100vh;
+    width: 100%;
 }
 
 .writing {
