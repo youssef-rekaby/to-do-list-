@@ -9,6 +9,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: self-start;
+    width: 100vh;
 }
 
 .writing {
@@ -68,4 +69,29 @@ button:hover {
 }
 #non-blured {
     filter: none;
+}
+.comleted{
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: self-start;
+    margin-top: 15px;
+}
+.completed h2{
+    color: black;
+    font-size: 26px;
+    font-weight: bolder;
+    text-decoration: underline;
+}
+.hrr{
+    border-color: red ;
+    position: relative;
+    left: -50%;
+    width:700px ; 
+}
+.titletask{
+    margin-top: -5px;
+    text-decoration: underline;
 }

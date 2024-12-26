@@ -15,17 +15,24 @@
 <body>
    
         <h1>My Day</h1>
-        <div class="todos"></div>
+        <div class="todos">
+            <h2 class="titletask">your tasks:</h2>
+        </div>
         <div class="writing" id="non-blured ">
+            <hr>
             <form action="">
                 <input type="text" id="tasks" name="task" placeholder="Enter a task" autofocus>
                 <button id="submit" onclick="print()">submit</button>
             </form>
         </div>
+        
         <aside id="editboard">
-            <h2>Your task</h2>
+            <h2>Your Task</h2>
         </aside>
-    
+        <hr>
+        <div class="completed">
+            <h2>Completed Tasks:</h2>
+        </div>
     <script src="script.js"></script>
 </body>
 

@@ -3,6 +3,7 @@ const todos = document.getElementsByClassName('todos')[0];
 const aside = document.getElementById('editboard');
 const blured = document.getElementsByClassName('blured')[0];
 const writingg = document.getElementsByClassName('writing')[0];
+const completed = document.getElementsByClassName('completed')[0];
 function print() {
    event.preventDefault(); // Prevent the form's default submission behavior
    // create the task and the submit button
@@ -11,6 +12,41 @@ function print() {
    var div = document.createElement('div');//creating a container to the elements
    div.setAttribute('id', 'div');//setting a attribute to it
    var editbutton = document.createElement('button')
+   const hrr = document.createElement('hr')
+
+   // preventing the blacked tasks
+
+   if (tasks.value.trim() === '') {
+      alert('Please enter a task.');
+      return; // Prevent further execution if the input is empty
+   }
+   // making the check box to check the task is completed ?
+
+   const checkbox = document.createElement('input');
+   checkbox.type = 'checkbox';
+   checkbox.id = 'checkbox';
+   div.appendChild(checkbox)
+   checkbox.addEventListener('change',() => {
+      if(checkbox.checked){
+         div.removeChild(deletebutton)
+         div.removeChild(editbutton)
+         task.style.textDecoration = 'line-through'
+         div.removeChild(task)
+         completed.appendChild(task)
+         div.removeChild(checkbox)
+         completed.appendChild(deletebutton)
+         deletebutton.addEventListener('click',function(){
+            completed.removeChild(task)
+            completed.removeChild(deletebutton)
+            completed.removeChild(hrr)
+         })
+         deletebutton.style.marginBottom = "10px"
+         deletebutton.style.marginLeft = "5px"
+         completed.appendChild(hrr)
+         hrr.setAttribute('class','hrr')
+      }
+   })
+
 
    //append it on the div
    todos.appendChild(div)
