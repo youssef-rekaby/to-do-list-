@@ -67,43 +67,57 @@ function print() {
 
    // edit button stuff
    editbutton.textContent = "Edit"
-   editbutton.addEventListener('click', function () {
-      // task.textContent = prompt("Enter new task")
-      aside.style.display = "flex"
-      // editing area scrpit
-      var textarea = document.createElement('input')
-      textarea.type = "text"
-      aside.appendChild(textarea)
-      var savebutton = document.createElement('button')
-      savebutton.textContent = "Save"
-      aside.appendChild(savebutton)
-      var cancelbutton = document.createElement('button')
-      cancelbutton.textContent = "Cancel"
-      aside.appendChild(cancelbutton)
-      // making the functionality of the save button 
-      savebutton.addEventListener("click", function () {
-         task.textContent = textarea.value
-         aside.style.display = "none"
-         aside.removeChild(textarea)
-         aside.removeChild(savebutton)
-         aside.removeChild(cancelbutton)
-         document.querySelector('h1').setAttribute('id','non-blured')
-      });
-      // making the functionalty of the cancel button
-      cancelbutton.addEventListener("click", function(){
-         aside.removeChild(textarea)
-         aside.removeChild(savebutton)
-         aside.removeChild(cancelbutton)
-         aside.style.display = "none"
-         document.querySelector('h1').setAttribute('id','non-blured')
-      })
-      aside.style.filter = "none"
-      document.querySelector('h1').setAttribute('id','blured')
-      document.querySelectorAll('div').setAttribute('id','blured')
-      
-      
-      
-   });
+   // let the edit board is closed
+   let IsEditBoardActive = false;
+
+editbutton.addEventListener('click', function () {
+    // Check if the edit board is already active
+    if (IsEditBoardActive) {
+        alert("Another task is currently being edited. Please finish editing first.");
+        return;
+    }
+
+    // Mark the edit board as active
+    IsEditBoardActive = true;
+
+    // Display the edit board
+    aside.style.display = "flex";
+
+    // Create editing elements
+    var textarea = document.createElement('input');
+    textarea.type = "text";
+    aside.appendChild(textarea);
+    textarea.value = task.textContent;
+    
+    var savebutton = document.createElement('button');
+    savebutton.textContent = "Save";
+    aside.appendChild(savebutton);
+
+    var cancelbutton = document.createElement('button');
+    cancelbutton.textContent = "Cancel";
+    aside.appendChild(cancelbutton);
+
+    // Save button functionality
+    savebutton.addEventListener("click", function () {
+        task.textContent = textarea.value;
+        resetEditBoard(textarea, savebutton, cancelbutton);
+    });
+
+    // Cancel button functionality
+    cancelbutton.addEventListener("click", function () {
+        resetEditBoard(textarea, savebutton, cancelbutton);
+    });
+
+    // Function to reset the edit board state
+    function resetEditBoard(textarea, savebutton, cancelbutton) {
+        aside.removeChild(textarea);
+        aside.removeChild(savebutton);
+        aside.removeChild(cancelbutton);
+        aside.style.display = "none";
+        IsEditBoardActive = false; // Reset the active state
+    }
+});
+
    
    //styling the edit button 
    editbutton.style.marginLeft = "5%"
