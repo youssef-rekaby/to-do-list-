@@ -4,6 +4,7 @@ const aside = document.getElementById('editboard');
 const blured = document.getElementsByClassName('blured')[0];
 const writingg = document.getElementsByClassName('writing')[0];
 const completed = document.getElementsByClassName('completed')[0];
+const sound = document.querySelector('audio')
 function print() {
    event.preventDefault(); // Prevent the form's default submission behavior
    // create the task and the submit button
@@ -14,7 +15,7 @@ function print() {
    var editbutton = document.createElement('button')
    const hrr = document.createElement('hr')
 
-   // preventing the blacked tasks
+   // preventing the blancked tasks
 
    if (tasks.value.trim() === '') {
       alert('Please enter a task.');
@@ -28,6 +29,7 @@ function print() {
    div.appendChild(checkbox)
    checkbox.addEventListener('change',() => {
       if(checkbox.checked){
+         sound.play()
          div.removeChild(deletebutton)
          div.removeChild(editbutton)
          task.style.textDecoration = 'line-through'
@@ -35,15 +37,34 @@ function print() {
          completed.appendChild(task)
          div.removeChild(checkbox)
          completed.appendChild(deletebutton)
+         var Return = document.createElement('button')
+         Return.textContent = 'Return'
+         Return.style.marginLeft = "5px"
+         completed.appendChild(Return)
          deletebutton.addEventListener('click',function(){
             completed.removeChild(task)
             completed.removeChild(deletebutton)
             completed.removeChild(hrr)
+            
          })
          deletebutton.style.marginBottom = "10px"
          deletebutton.style.marginLeft = "5px"
+         Return.addEventListener('click',function (){
+            completed.removeChild(task)
+            completed.removeChild(deletebutton)
+            completed.removeChild(hrr)
+            div.appendChild(checkbox)
+            div.appendChild(task)
+            div.appendChild(deletebutton)
+            div.appendChild(editbutton)
+            completed.removeChild(Return)
+            task.style.textDecoration = "none"
+            checkbox.checked = false
+            deletebutton.style.marginBottom = "0px"
+         })
          completed.appendChild(hrr)
          hrr.setAttribute('class','hrr')
+
       }
    })
 
@@ -96,7 +117,10 @@ editbutton.addEventListener('click', function () {
     var cancelbutton = document.createElement('button');
     cancelbutton.textContent = "Cancel";
     aside.appendChild(cancelbutton);
-
+    // making the date option 
+    var dateTime = document.createElement('input') 
+    dateTime.setAttribute('type','date')
+    aside.appendChild(dateTime)
     // Save button functionality
     savebutton.addEventListener("click", function () {
         task.textContent = textarea.value;
